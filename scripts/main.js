@@ -1,45 +1,49 @@
-const container = document.querySelector('.container');
+const sketchBox = document.querySelector(".sketch-box");
 initialize();
 
 function initialize() {
-    const changeButton = document.querySelector('.btn-change');
-    changeButton.addEventListener('click', requestNewGrid);
+    const changeButton = document.querySelector(".btn-change");
+    changeButton.addEventListener("click", requestNewGrid);
 
-    const resetButton = document.querySelector('.btn-reset');
-    resetButton.addEventListener('click', resetGrid);
+    const resetButton = document.querySelector(".btn-reset");
+    resetButton.addEventListener("click", resetGrid);
 
-    makeNewGrid(16);
+    makeNewGrid(50);
     addEventsToGrid();
 }
 
 function removeOldGrid() {
-    let oldGrid = document.querySelectorAll('.container > *');
-    oldGrid.forEach(item => container.removeChild(item));
+    let oldGrid = document.querySelectorAll(".sketchBox > div");
+    oldGrid.forEach((item) => sketchBox.removeChild(item));
 }
 
 function makeNewGrid(size) {
-    container.style.setProperty('grid-template-columns', `repeat(${size}, 1fr)`);
-    container.setAttribute('grid-template-rows', `repeat(${size}, 1fr)`);
+    sketchBox.style.setProperty(
+        "grid-template-columns",
+        `repeat(${size}, 1fr)`
+    );
+    sketchBox.setAttribute("grid-template-rows", `repeat(${size}, 1fr)`);
 
     for (let i = 0; i < size * size; i++) {
-        const div = document.createElement('div');
-        container.appendChild(div)
+        const div = document.createElement("div");
+        sketchBox.appendChild(div);
     }
 }
 
 function addEventsToGrid() {
-    let grid = document.querySelectorAll('.container > *');
-    grid.forEach(item => {
-        item.addEventListener('mouseover', activateSquare);
+    let grid = document.querySelectorAll(".sketch-box > div");
+    grid.forEach((item) => {
+        item.addEventListener("mouseover", activateSquare);
     });
 }
 
 function activateSquare(e) {
-    this.style.background = 'black';
+    this.style.background = "black";
+    console.log("activate");
 }
 
 function requestNewGrid() {
-    let size = +prompt('What size would you like your next grid?', '16');
+    let size = +prompt("What size would you like your next grid?", "16");
     if (isNaN(size) || size == 0) return;
     removeOldGrid();
     makeNewGrid(size);
@@ -47,8 +51,8 @@ function requestNewGrid() {
 }
 
 function resetGrid() {
-    let grid = document.querySelectorAll('.container > *');
-    grid.forEach(item => {
-        item.style.background = 'rgba(0, 0, 0, 0.025)';
+    let grid = document.querySelectorAll(".sketchBox > div");
+    grid.forEach((item) => {
+        item.style.background = "rgba(0, 0, 0, 0.025)";
     });
 }
