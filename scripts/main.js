@@ -8,12 +8,12 @@ function initialize() {
     const resetButton = document.querySelector(".btn-reset");
     resetButton.addEventListener("click", resetGrid);
 
-    makeNewGrid(50);
+    makeNewGrid(16);
     addEventsToGrid();
 }
 
 function removeOldGrid() {
-    let oldGrid = document.querySelectorAll(".sketchBox > div");
+    let oldGrid = document.querySelectorAll(".sketch-box div");
     oldGrid.forEach((item) => sketchBox.removeChild(item));
 }
 
@@ -31,7 +31,7 @@ function makeNewGrid(size) {
 }
 
 function addEventsToGrid() {
-    let grid = document.querySelectorAll(".sketch-box > div");
+    let grid = document.querySelectorAll(".sketch-box div");
     grid.forEach((item) => {
         item.addEventListener("mouseover", activateSquare);
     });
@@ -39,7 +39,6 @@ function addEventsToGrid() {
 
 function activateSquare(e) {
     this.style.background = "black";
-    console.log("activate");
 }
 
 function requestNewGrid() {
@@ -51,7 +50,7 @@ function requestNewGrid() {
 }
 
 function resetGrid() {
-    let grid = document.querySelectorAll(".sketchBox > div");
+    let grid = document.querySelectorAll(".sketch-box div");
     grid.forEach((item) => {
         item.style.background = "rgba(0, 0, 0, 0.025)";
     });
