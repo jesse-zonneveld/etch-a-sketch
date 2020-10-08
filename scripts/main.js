@@ -8,7 +8,7 @@ function initialize() {
     const resetButton = document.querySelector(".btn-reset");
     resetButton.addEventListener("click", resetGrid);
 
-    makeNewGrid(16);
+    makeNewGrid(70);
     addEventsToGrid();
 }
 
